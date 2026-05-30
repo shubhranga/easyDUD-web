@@ -223,7 +223,14 @@ export function FloatingSidebar(props: FloatingSidebarProps) {
           {sectionGroups.map((group) => (
             <button
               key={group.section}
-              onClick={() => onSectionChange?.(group.section)}
+              onClick={() => {
+                if (group.section === "hotels") {
+                  // Hotels has no sub-items — navigate directly.
+                  navigate({ to: "/hotels" });
+                } else {
+                  onSectionChange?.(group.section);
+                }
+              }}
               aria-label={`Switch to ${group.label}`}
               className="group relative flex items-center justify-center w-6 h-6"
             >
