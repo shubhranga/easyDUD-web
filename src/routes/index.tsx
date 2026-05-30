@@ -71,7 +71,7 @@ function Index() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar overlay activeSection={activeSection} />
-      <FloatingSidebar activeSection={activeSection} />
+      <FloatingSidebar />
       <SectionDotNav sectionIds={SECTION_IDS} activeSection={activeSection} />
 
       {/* HERO */}
