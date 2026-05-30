@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search } from "lucide-react";
+import { ArrowLeft, Search } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { SearchHero } from "@/components/hotels/SearchHero";
 import { PopularDestinations } from "@/components/hotels/PopularDestinations";
