@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search } from "lucide-react";
+import { ArrowLeft, Search } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { SearchHero } from "@/components/hotels/SearchHero";
 import { PopularDestinations } from "@/components/hotels/PopularDestinations";
@@ -74,6 +74,17 @@ function HotelsPage() {
         @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
       `}</style>
       <Navbar />
+
+      {/* Back to home — re-enables FloatingSidebar on "/" */}
+      <Link
+        to="/"
+        aria-label="Back to home"
+        className="group fixed left-4 top-20 z-40 inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/70 px-3 py-2 text-sm font-medium text-foreground/70 shadow-[0_8px_24px_-12px_rgba(60,60,90,0.25)] backdrop-blur-xl transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+      >
+        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+        Back to Home
+      </Link>
+
 
       <SearchHero
         onSearch={(q) => {
