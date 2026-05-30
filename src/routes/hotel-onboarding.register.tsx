@@ -10,13 +10,9 @@ const searchSchema = z.object({
 
 export const Route = createFileRoute("/hotel-onboarding/register")({
   validateSearch: (input) => searchSchema.parse(input),
-  head: ({ match }) => ({
+  head: () => ({
     meta: [
-      {
-        title: `${
-          match.search.tier === "premium" ? "Premium" : "Basic"
-        } Registration — easyDUD Partners`,
-      },
+      { title: "Hotel Registration — easyDUD Partners" },
       {
         name: "description",
         content:
