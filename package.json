@@ -9,9 +9,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write .",
-    "predeploy": "npm run build && cp CNAME dist/client/ && echo '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>easyDUD</title></head><body><div id=\"root\"></div><script type=\"module\" src=\"/assets/index-ILJjKk1n.js\"></script></body></html>' > dist/client/index.html && cp dist/client/index.html dist/client/404.html",
-    "deploy": "gh-pages -d dist/client"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
@@ -88,7 +86,6 @@
     "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
-    "gh-pages": "^6.3.0",
     "globals": "^15.15.0",
     "prettier": "^3.7.3",
     "typescript": "^5.8.3",
