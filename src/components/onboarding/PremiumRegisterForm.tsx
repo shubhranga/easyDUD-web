@@ -13,8 +13,8 @@ import {
   verifyRazorpayPayment,
   RAZORPAY_KEY_ID,
 } from "@/lib/razorpay";
-import { getDb } from "@/lib/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { getDb, getFirebaseApp } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp, getFirestore } from "firebase/firestore";
 
 const PREMIUM_STEPS = ["Onboarding Form", "Review Details", "Payment"];
 const AMENITY_OPTIONS = ["WiFi", "Pool", "Gym", "Restaurant", "Parking", "Spa"];
@@ -59,7 +59,8 @@ export function PremiumRegisterForm() {
   const [step, setStep] = useState(0);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
-  const db = getDb();
+  const app = getFirebaseApp();
+  const db = getFirestore(app);
 
   const {
     register,
