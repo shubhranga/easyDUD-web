@@ -9,7 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
-import appCss from "../styles.css?url";
+import "../styles.css";
 import { FloatingNav } from "@/components/FloatingNav";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -71,27 +71,6 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "easyDUD" },
-      { name: "description", content: "easyDUD — smarter, seamless travel booking." },
-      { name: "author", content: "DUD" },
-      { property: "og:title", content: "easyDUD" },
-      { property: "og:description", content: "easyDUD — smarter, seamless travel booking." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,

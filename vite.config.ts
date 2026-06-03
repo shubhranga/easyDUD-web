@@ -10,7 +10,17 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
 export default defineConfig({
   tanstackStart: {
-    
     server: { entry: "server" },
+    client: { entry: "entry-client" },
+  },
+  vite: {
+    build: { manifest: true },
   },
 });
+
+
+//cfut_C4xt2XscTe55X1cl7VgxE0Ib7V0vRr6V6xcwWEzjafce1f7f
+
+
+
+//# 1. Find record IDs (replace values)
