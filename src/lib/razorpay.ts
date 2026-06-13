@@ -3,7 +3,7 @@ import { getFns } from "./firebase";
 
 /** Public Razorpay test Key ID — safe to expose on the frontend. */
 export const RAZORPAY_KEY_ID =
-  (import.meta.env.VITE_RAZORPAY_KEY_ID as string | undefined) ?? "rzp_test_SpuH9PLdS8BzUb";
+  (import.meta.env.VITE_RAZORPAY_KEY_ID as string | undefined) ?? "rzp_live_Sz3oJwyVmTx5y2";
 
 export interface RazorpayOrder {
   orderId: string;

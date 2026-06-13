@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useNavigate } from "@tanstack/react-router";
@@ -110,8 +110,9 @@ export function BasicRegisterForm() {
     }
   };
 
-  const lat = watch("lat");
-  const lng = watch("lng");
+  const lat = useWatch({ control, name: "lat" });
+  const lng = useWatch({ control, name: "lng" });
+  const paymentMethod = useWatch({ control, name: "paymentMethod" });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -125,7 +126,7 @@ export function BasicRegisterForm() {
               <label
                 key={opt.id}
                 className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition-colors ${
-                  watch("paymentMethod") === opt.id
+                  paymentMethod === opt.id
                     ? "border-indigo-500 bg-indigo-50/60"
                     : "border-slate-200 hover:border-slate-300"
                 }`}

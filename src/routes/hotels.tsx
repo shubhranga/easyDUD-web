@@ -140,7 +140,7 @@ function HotelsPage() {
                 gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
               }}
             >
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 {loading
                   ? Array.from({ length: 6 }).map((_, i) => (
                       <HotelCardSkeleton key={i} />

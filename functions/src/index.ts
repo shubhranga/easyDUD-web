@@ -1,14 +1,13 @@
 import { onCall, HttpsError } from "firebase-functions/v2/https";
 import * as crypto from "node:crypto";
+import { defineString } from "firebase-functions/params";
 
 /**
  * Public Razorpay test Key ID — safe to keep in source.
- * The Key Secret is hardcoded for testing. In production, use Firebase Secret Manager:
- *   firebase functions:secrets:set RAZORPAY_KEY_SECRET
+ * The Key Secret is configured via Firebase params
  */
-const RAZORPAY_KEY_ID = "rzp_test_SpuH9PLdS8BzUb";
-const RAZORPAY_KEY_SECRET = "MRtCrw8Ciji9BQJwp3AP6Xyk";
-
+const RAZORPAY_KEY_ID = defineString("RAZORPAY_KEY_ID");
+const RAZORPAY_KEY_SECRET = defineString("RAZORPAY_KEY_SECRET");
 const BASIC_PLAN_AMOUNT_PAISE = 999900; // ₹9,999
 
 interface RazorpayOrderResponse {
@@ -22,12 +21,13 @@ interface RazorpayOrderResponse {
  * Creates a Razorpay order server-side and returns the id/amount/currency.
  */
 export const createRazorpayOrder = onCall(async (request: any) => {
-  const secret = RAZORPAY_KEY_SECRET;
+  const secret = RAZORPAY_KEY_SECRET.value();
+  const keyId = RAZORPAY_KEY_ID.value();
   if (!secret) {
     throw new HttpsError("failed-precondition", "Razorpay secret is not configured.");
   }
 
-    const auth = Buffer.from(`${RAZORPAY_KEY_ID}:${secret}`).toString("base64");
+    const auth = Buffer.from(`${keyId}:${secret}`).toString("base64");
 
     const res = await fetch("https://api.razorpay.com/v1/orders", {
       method: "POST",
@@ -63,6 +63,11 @@ interface VerifyPayload {
  * Verifies the Razorpay signature using HMAC-SHA256(secret, order_id|payment_id).
  */
 export const verifyRazorpayPayment = onCall(async (request: any) => {
+  const secret = RAZORPAY_KEY_SECRET.value();
+  if (!secret) {
+    throw new HttpsError("failed-precondition", "Razorpay secret is not configured.");
+  }
+
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
     (request.data ?? {}) as VerifyPayload;
 
@@ -71,7 +76,7 @@ export const verifyRazorpayPayment = onCall(async (request: any) => {
   }
 
   const expected = crypto
-    .createHmac("sha256", RAZORPAY_KEY_SECRET)
+    .createHmac("sha256", secret)
     .update(`${razorpay_order_id}|${razorpay_payment_id}`)
     .digest("hex");
 

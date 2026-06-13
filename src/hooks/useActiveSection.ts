@@ -13,6 +13,8 @@ export function useActiveSection(sectionIds: string[]): string {
   const visibleRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

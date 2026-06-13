@@ -8,6 +8,7 @@ export function useRotatingIndex(length: number, intervalMs = 4000) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
     if (length <= 1) return;
     setIndex(0);
     let id: number | undefined;

@@ -26,6 +26,7 @@ export function Navbar({ overlay = false, activeSection }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const onScroll = () => setScrolled(window.scrollY > 60);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });

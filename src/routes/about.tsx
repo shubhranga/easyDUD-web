@@ -27,33 +27,8 @@ const TEAM = [
   { 
     name: "Chetan", 
     role: "Executive Co-Founder & Marketing", 
-    img: "/team/CFO.jpg" 
+    img: "/team/cfo2.jpg" 
   },
-  { 
-    name: "Rohit Srivastava", 
-    role: "Executive Manager", 
-    img: "/team/EM.jpg" 
-  },
-  { 
-    name: "Suraj", 
-    role: "Business Development Manager", 
-    img: "/team/BDM.jpg" 
-  },
-  { 
-    name: "Tanya", 
-    role: "Company Relationshiop Manager", 
-    img: "/team/CRM.jpg" 
-  },
-  { 
-    name: "Diksha Kholiya", 
-    role: "Company Process Manager & Admin", 
-    img: "/team/Diksha.jpg" 
-  },
-  { 
-    name: "Shivansh Yadav & Lalit Kaira", 
-    role: "Management of Designing Development & Editing", 
-    img: ["/team/designer 2.jpg", "/team/designer1.jpg"] 
-  }
 ];
 
 function AboutPage() {
@@ -86,51 +61,68 @@ function AboutPage() {
         <h2 className="text-3xl font-bold text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
           Meet the team
         </h2>
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {TEAM.map((m, i) => (
-            <motion.div
-              key={m.name}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative bg-white border border-slate-100 p-8 shadow-sm flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-              style={{
-                borderRadius: "24px 24px 24px 0",
-                clipPath: "polygon(0 0, 100% 0, 100% 100%, 15% 100%, 0 85%)",
-              }}
-            >
-              <div className="mb-12">
-                <h3 className="text-xl font-bold text-slate-900">{m.name}</h3>
-                <p className="text-sm font-medium text-slate-500 mt-1 uppercase tracking-wider">{m.role}</p>
-              </div>
-              
-              <div className="relative mt-auto mx-auto w-full aspect-square max-w-[240px]">
-                {/* Background decorative shape */}
-                <div className="absolute inset-0 bg-slate-50 rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-slate-100/50 rounded-2xl transform -rotate-3 group-hover:-rotate-2 transition-transform duration-500" />
+        <div className="mt-12 flex flex-col items-center gap-8">
+          {/* CEO at top - centered */}
+          <motion.div
+            key={TEAM[0].name}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0 }}
+            className="group relative bg-white border border-slate-100 p-8 shadow-sm flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 max-w-md w-full"
+            style={{
+              borderRadius: "24px 24px 24px 0",
+              clipPath: "polygon(0 0, 100% 0, 100% 100%, 15% 100%, 0 85%)",
+            }}
+          >
+            <div className="mb-12">
+              <h3 className="text-xl font-bold text-slate-900">{TEAM[0].name}</h3>
+              <p className="text-sm font-medium text-slate-500 mt-1 uppercase tracking-wider">{TEAM[0].role}</p>
+            </div>
+            
+            <div className="relative mt-auto mx-auto w-full aspect-square max-w-[240px]">
+              <div className="absolute inset-0 bg-slate-50 rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500" />
+              <div className="absolute inset-0 bg-slate-100/50 rounded-2xl transform -rotate-3 group-hover:-rotate-2 transition-transform duration-500" />
+              <img 
+                src={TEAM[0].img} 
+                alt={TEAM[0].name} 
+                className="relative z-10 w-full h-full object-cover object-center rounded-2xl shadow-lg grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" 
+              />
+            </div>
+          </motion.div>
+
+          {/* Other two at bottom - side by side */}
+          <div className="grid gap-8 sm:grid-cols-2 w-full max-w-3xl">
+            {TEAM.slice(1).map((m, i) => (
+              <motion.div
+                key={m.name}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: (i + 1) * 0.1 }}
+                className="group relative bg-white border border-slate-100 p-8 shadow-sm flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                style={{
+                  borderRadius: "24px 24px 24px 0",
+                  clipPath: "polygon(0 0, 100% 0, 100% 100%, 15% 100%, 0 85%)",
+                }}
+              >
+                <div className="mb-12">
+                  <h3 className="text-xl font-bold text-slate-900">{m.name}</h3>
+                  <p className="text-sm font-medium text-slate-500 mt-1 uppercase tracking-wider">{m.role}</p>
+                </div>
                 
-                {Array.isArray(m.img) ? (
-                  <div className="relative z-10 w-full h-full flex gap-1 overflow-hidden rounded-2xl shadow-lg">
-                    {m.img.map((src, idx) => (
-                      <img 
-                        key={idx}
-                        src={src} 
-                        alt={m.name} 
-                        className="w-1/2 h-full object-cover object-center grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" 
-                      />
-                    ))}
-                  </div>
-                ) : (
+                <div className="relative mt-auto mx-auto w-full aspect-square max-w-[240px]">
+                  <div className="absolute inset-0 bg-slate-50 rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-slate-100/50 rounded-2xl transform -rotate-3 group-hover:-rotate-2 transition-transform duration-500" />
                   <img 
                     src={m.img} 
                     alt={m.name} 
                     className="relative z-10 w-full h-full object-cover object-center rounded-2xl shadow-lg grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" 
                   />
-                )}
-              </div>
-            </motion.div>
-          ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
         <Link to="/" className="inline-block mt-8 text-[#2563EB] hover:underline">← Back home</Link>
       </section>

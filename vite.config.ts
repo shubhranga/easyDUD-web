@@ -17,10 +17,3 @@ export default defineConfig({
     build: { manifest: true },
   },
 });
-
-
-//cfut_C4xt2XscTe55X1cl7VgxE0Ib7V0vRr6V6xcwWEzjafce1f7f
-
-
-
-//# 1. Find record IDs (replace values)

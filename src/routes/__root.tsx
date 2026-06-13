@@ -9,7 +9,9 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
-import "../styles.css";
+// import "../styles.css";
+import appCss from "../styles.css?url";
+
 import { FloatingNav } from "@/components/FloatingNav";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -71,6 +73,18 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "easyDUD — Travel Booking Platform" },
+      { name: "description", content: "easyDUD — smarter, seamless travel booking for buses, flights, hotels, and more." },
+    ],
+    links: [
+      { rel: "stylesheet", href: appCss },
+    ],
+  }),
+  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
@@ -83,7 +97,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <div id="root">{children}</div>
+        {/* {children} */}
         <Scripts />
       </body>
     </html>
